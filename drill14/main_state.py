@@ -44,7 +44,7 @@ def enter():
     boy.set_background(background)
 
     global balls
-    balls = [Ball() for i in range(10)]
+    balls = [Ball() for i in range(100)]
     game_world.add_objects(balls, 1)
 
 
@@ -75,8 +75,13 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
+
     for ball in balls:
+        ball.x -= boy.x_velocity * game_framework.frame_time
+        ball.y -= boy.y_velocity * game_framework.frame_time
+
         if collide(boy, ball):
+            boy.check += 1
             balls.remove(ball)
             boy.eat(ball)
             game_world.remove_object(ball)
