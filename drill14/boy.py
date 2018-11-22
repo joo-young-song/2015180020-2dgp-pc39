@@ -151,6 +151,7 @@ class Boy:
             self.cur_state.enter(self, event)
 
     def draw(self):
+        draw_rectangle(*self.get_bb())
         self.cur_state.draw(self)
         self.font.draw(self.x - self.bg.window_left - 60, self.y - self.bg.window_bottom + 50,
                        '(%5d)' % (self.check), (255, 255, 0))

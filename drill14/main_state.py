@@ -73,12 +73,19 @@ def handle_events():
 
 
 def update():
+    global background
+
     for game_object in game_world.all_objects():
         game_object.update()
 
     for ball in balls:
-        ball.x -= boy.x_velocity * game_framework.frame_time
-        ball.y -= boy.y_velocity * game_framework.frame_time
+        if background.window_left > 0 and \
+                background.window_left < background.w - background.canvas_width:
+            ball.x -= boy.x_velocity * game_framework.frame_time
+
+        if background.window_bottom > 0 and \
+                background.window_bottom < background.h - background.canvas_height:
+            ball.y -= boy.y_velocity * game_framework.frame_time
 
         if collide(boy, ball):
             boy.check += 1
