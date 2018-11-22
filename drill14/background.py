@@ -1,5 +1,3 @@
-import random
-
 from pico2d import *
 
 
@@ -29,7 +27,6 @@ class FixedBackground:
 
     def handle_event(self, event):
         pass
-
 
 class InfiniteBackground:
 
