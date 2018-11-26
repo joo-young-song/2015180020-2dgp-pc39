@@ -6,6 +6,7 @@ import os
 from pico2d import *
 import game_framework
 import game_world
+import ranking_state
 
 import world_build_state
 
@@ -62,7 +63,11 @@ def update():
         game_object.update()
     for zombie in zombies:
         if collide(boy, zombie):
-            game_framework.push_state()
+            boy.end_time = get_time() - boy.start_time
+            with open('ranking_data.json', 'r') as f:
+                ranking_list = json.load(f)
+            ranking_list = ranking_list + boy.end_time
+            game_framework.change_state(ranking_state)
 
 
 

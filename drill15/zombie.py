@@ -91,7 +91,7 @@ class Zombie:
 
 
     def get_bb(self):
-        return self.x - 50 * self.size, self.y - 50 * self.size, self.x + 50 * self.size, self.y + 50 * self.size
+        return self.x - 50, self.y - 50, self.x + 50, self.y + 50
 
     def update(self):
         self.bt.run()

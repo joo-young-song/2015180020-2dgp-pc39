@@ -6,6 +6,7 @@ import os
 from pico2d import *
 import game_framework
 import game_world
+import boy
 
 import world_build_state
 
@@ -15,9 +16,13 @@ name = "MainState"
 def collide(a, b):
     pass
 
+ranking_list = None
+
 def enter():
+    global ranking_list
     with open('ranking_data.json', 'r') as f:
         ranking_list = json.load(f)
+
 
 def exit():
     game_world.clear()
@@ -44,9 +49,12 @@ def update():
 
 
 def draw():
+    global ran
     clear_canvas()
-    for game_object in game_world.all_objects():
-        game_object.draw()
+    font = load_font('ENCR10B.TTF', 20)
+    for i in range(len(ranking_list)):
+        font.draw( 50 , i * 50, '(Time: %3.2f)' % (ranking_list[i]), (240, 0, 0))
+
     update_canvas()
 
 

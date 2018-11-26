@@ -128,6 +128,7 @@ class Boy:
         self.cur_state = WalkingState
         self.cur_state.enter(self, None)
         self.start_time = get_time()
+        self.end_time = 0
 
     def __getstate__(self):
         state = {'x': self.x, 'y': self.y, 'dir': self.dir, 'cur_state': self.cur_state}

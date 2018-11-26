@@ -39,14 +39,6 @@ def resume():
 def get_boy():
     return boy
 
-def get_zombie():
-
-    with open('zombie_data.json', 'r') as f:
-        zombie_data_list = json.load(f)
-
-    for data in zombie_data_list:
-        yield data
-
 def create_new_world():
     global boy
     boy = Boy()
