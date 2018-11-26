@@ -66,7 +66,9 @@ def update():
             boy.end_time = get_time() - boy.start_time
             with open('ranking_data.json', 'r') as f:
                 ranking_list = json.load(f)
-            ranking_list = ranking_list + boy.end_time
+            ranking_list = ranking_list + [boy.end_time]
+            with open('ranking_data.json', 'w') as f:
+                json.dump(ranking_list,f)
             game_framework.change_state(ranking_state)
 
 
