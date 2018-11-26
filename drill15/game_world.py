@@ -1,4 +1,5 @@
 import pickle
+import zombie
 
 # layer 0: Background Objects
 # layer 1: Foreground Objects
@@ -31,7 +32,11 @@ def all_objects():
         for o in objects[i]:
             yield o
 
-
+def zombie_objects():
+    for i in range(len(objects)):
+        for o in objects[i]:
+            if isinstance(o, zombie.Zombie):
+                yield o
 def save():
     with open('game.sav', 'wb') as f:
         pickle.dump(objects, f)

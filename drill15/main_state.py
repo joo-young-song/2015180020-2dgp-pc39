@@ -57,9 +57,10 @@ def handle_events():
 
 
 def update():
+    zombies = game_world.zombie_objects()
     for game_object in game_world.all_objects():
         game_object.update()
-    for zombie in world_build_state.get_zombie():
+    for zombie in zombies:
         if collide(boy, zombie):
             game_framework.push_state()
 

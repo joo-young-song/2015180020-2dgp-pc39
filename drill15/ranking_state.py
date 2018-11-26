@@ -13,24 +13,11 @@ name = "MainState"
 
 
 def collide(a, b):
-    # fill here
-    left_a, bottom_a, right_a, top_a = a.get_bb()
-    left_b, bottom_b, right_b, top_b = b.get_bb()
-
-    if left_a > right_b: return False
-    if right_a < left_b: return False
-    if top_a < bottom_b: return False
-    if bottom_a > top_b: return False
-
-    return True
-
-boy = None
+    pass
 
 def enter():
-    # game world is prepared already in world_build_state
-    global boy
-    boy = world_build_state.get_boy()
-    pass
+    with open('ranking_data.json', 'r') as f:
+        ranking_list = json.load(f)
 
 def exit():
     game_world.clear()
@@ -50,18 +37,9 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_state(world_build_state)
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_s:
-            game_world.save()
-        else:
-            boy.handle_event(event)
-
 
 def update():
-    for game_object in game_world.all_objects():
-        game_object.update()
-    for zombie in world_build_state.get_zombie():
-        if collide(boy, zombie):
-            game_framework.push_state()
+    pass
 
 
 
